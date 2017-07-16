@@ -1,0 +1,9 @@
+C:\Project\DevExpress\FloodInTheZagreb\FloodInTheZagreb\bin\Debug\FloodInTheZagreb.exe.config
+C:\Project\DevExpress\FloodInTheZagreb\FloodInTheZagreb\bin\Debug\FloodInTheZagreb.exe
+C:\Project\DevExpress\FloodInTheZagreb\FloodInTheZagreb\bin\Debug\FloodInTheZagreb.pdb
+C:\Project\DevExpress\FloodInTheZagreb\FloodInTheZagreb\obj\Debug\FloodInTheZagreb.csprojResolveAssemblyReference.cache
+C:\Project\DevExpress\FloodInTheZagreb\FloodInTheZagreb\obj\Debug\FloodInTheZagreb.FloodInTheZagrebForm.resources
+C:\Project\DevExpress\FloodInTheZagreb\FloodInTheZagreb\obj\Debug\FloodInTheZagreb.Properties.Resources.resources
+C:\Project\DevExpress\FloodInTheZagreb\FloodInTheZagreb\obj\Debug\FloodInTheZagreb.csproj.GenerateResource.Cache
+C:\Project\DevExpress\FloodInTheZagreb\FloodInTheZagreb\obj\Debug\FloodInTheZagreb.exe
+C:\Project\DevExpress\FloodInTheZagreb\FloodInTheZagreb\obj\Debug\FloodInTheZagreb.pdb
