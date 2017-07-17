@@ -25,3 +25,12 @@ D:\FloodInTheZagreb\FloodInTheZagreb\obj\Debug\FloodInTheZagreb.Properties.Resou
 D:\FloodInTheZagreb\FloodInTheZagreb\obj\Debug\FloodInTheZagreb.csproj.GenerateResource.Cache
 D:\FloodInTheZagreb\FloodInTheZagreb\obj\Debug\FloodInTheZagreb.exe
 D:\FloodInTheZagreb\FloodInTheZagreb\obj\Debug\FloodInTheZagreb.pdb
+C:\Users\1\Documents\GitHub\FloodInTheZagreb\FloodInTheZagrebAfterRefactoring\FloodInTheZagreb\bin\Debug\FloodInTheZagreb.exe.config
+C:\Users\1\Documents\GitHub\FloodInTheZagreb\FloodInTheZagrebAfterRefactoring\FloodInTheZagreb\bin\Debug\FloodInTheZagreb.exe
+C:\Users\1\Documents\GitHub\FloodInTheZagreb\FloodInTheZagrebAfterRefactoring\FloodInTheZagreb\bin\Debug\FloodInTheZagreb.pdb
+C:\Users\1\Documents\GitHub\FloodInTheZagreb\FloodInTheZagrebAfterRefactoring\FloodInTheZagreb\obj\Debug\FloodInTheZagreb.csprojResolveAssemblyReference.cache
+C:\Users\1\Documents\GitHub\FloodInTheZagreb\FloodInTheZagrebAfterRefactoring\FloodInTheZagreb\obj\Debug\FloodInTheZagreb.FloodInTheZagrebForm.resources
+C:\Users\1\Documents\GitHub\FloodInTheZagreb\FloodInTheZagrebAfterRefactoring\FloodInTheZagreb\obj\Debug\FloodInTheZagreb.Properties.Resources.resources
+C:\Users\1\Documents\GitHub\FloodInTheZagreb\FloodInTheZagrebAfterRefactoring\FloodInTheZagreb\obj\Debug\FloodInTheZagreb.csproj.GenerateResource.Cache
+C:\Users\1\Documents\GitHub\FloodInTheZagreb\FloodInTheZagrebAfterRefactoring\FloodInTheZagreb\obj\Debug\FloodInTheZagreb.exe
+C:\Users\1\Documents\GitHub\FloodInTheZagreb\FloodInTheZagrebAfterRefactoring\FloodInTheZagreb\obj\Debug\FloodInTheZagreb.pdb

@@ -18,97 +18,101 @@ namespace FloodInTheZagreb {
         }
 
         public City TryLoadCity() {
-            var nodes = TryReadNodes();
+            var nodes = TryReadElements<Node>(minCountNodes, maxCountNodes);
             if(nodes == null)
                 return null;
-            var walls = TryReadWalls(nodes);
+            var walls = TryReadElements<Wall>(minCountWalls, maxCountWalls, nodes);
             if(walls == null)
                 return null;
             return new City(walls);
         }
-        
+
         private Boolean TryReadCount(out Int32 value) {
             value = default(Int32);
             try { value = Int32.Parse(streamReader.ReadLine()); }
             catch(Exception) { return false; }
             return true;
         }
-        private List<Node> TryReadNodes() {
-            if(!TryReadCount(out Int32 nodesCount))
+
+        private List<T> TryReadElements<T>(Int32 minCount, Int32 maxCount, List<Node> nodes = null) where T : class {
+            if(!TryReadCount(out Int32 elementsCount))
                 return null;
-            if(nodesCount < minCountNodes || nodesCount > maxCountNodes)
+            if(elementsCount < minCount || elementsCount > maxCount)
                 return null;
-            var nodes = new List<Node>();
-            for(Int32 i = 0; i < nodesCount; i++) {
+            var elements = new List<T>();
+            for(Int32 i = 0; i < elementsCount; i++) {
                 String line = String.Empty;
                 try { line = streamReader.ReadLine(); }
                 catch(Exception) { return null; }
-                var node = new NodeEntryParser().TryGetNode(i + 1, line);
-                if(node == null)
+                var element = Parser<T>.Create().TryGetElement(i + 1, line, nodes);
+                if(element == null)
                     return null;
-                nodes.Add(node);
+                elements.Add(element);
             }
-            return nodes;
-        }
-        private List<Wall> TryReadWalls(List<Node> nodes) {
-            if(!TryReadCount(out Int32 wallsCount))
-                return null;
-            if(wallsCount < minCountWalls || wallsCount > maxCountWalls)
-                return null;
-            var walls = new List<Wall>();
-            for(Int32 i = 0; i < wallsCount; i++) {
-                String line = String.Empty;
-                try { line = streamReader.ReadLine(); }
-                catch(Exception) { return null; }
-                var wall = new WallEntryParser().TryGetWall(i + 1, nodes, line);
-                if(wall == null)
-                    return null;
-                walls.Add(wall);
-            }
-            return walls;
+            return elements;
         }
 
         public void Dispose() => streamReader.Close();
     }
 
-    class NodeEntryParser {
+    abstract class Parser<T> where T : class {
+        public static Parser<T> Create() {
+            if(typeof(T) == typeof(Node))
+                return new NodeEntryParser() as Parser<T>;
+            if(typeof(T) == typeof(Wall))
+                return new WallEntryParser() as Parser<T>;
+            return null;
+        }
+
+        public abstract T TryGetElement(Int32 idNode, String inputLine, List<Node> nodes = null);
+        protected abstract Boolean DataIsValid(Int32 value);
+    }
+
+    class NodeEntryParser : Parser<Node> {
         private readonly Int32 minCoordinate = 0;
         private readonly Int32 maxCoordinate = 100000;
 
-        public Node TryGetNode(Int32 idNode, String inputLine) {
+        public NodeEntryParser() : base() { }
+
+        protected override Boolean DataIsValid(Int32 value) =>
+            value >= minCoordinate && value <= maxCoordinate;
+
+        public override Node TryGetElement(Int32 idNode, String inputLine, List<Node> nodes = null) {
             if(String.IsNullOrEmpty(inputLine))
                 return null;
             if(!inputLine.TryGetTwoInt32Value(out Int32 x, out Int32 y))
                 return null;
-            if(!CoordinateIsValid(x) || !CoordinateIsValid(y))
+            if(!DataIsValid(x) || !DataIsValid(y))
                 return null;
             return new Node(new Point(x, y)) { ID = idNode };
         }
-        private Boolean CoordinateIsValid(Int32 coordinate) =>
-            coordinate >= minCoordinate && coordinate <= maxCoordinate;
     }
 
-    class WallEntryParser {
+    class WallEntryParser : Parser<Wall> {
         private readonly Int32 minId = 1;
         private readonly Int32 maxId = 100000;
 
-        public Wall TryGetWall(Int32 idWall, List<Node> allNode, String inputLine) {
+        public WallEntryParser() : base() { }
+
+        protected override Boolean DataIsValid(Int32 value) =>
+            value >= minId && value <= maxId;
+
+        public override Wall TryGetElement(Int32 idWall, String inputLine, List<Node> nodes = null) {
             if(String.IsNullOrEmpty(inputLine))
                 return null;
             if(!inputLine.TryGetTwoInt32Value(out Int32 idFirstNode, out Int32 idSecondNode))
                 return null;
             if(idFirstNode == idSecondNode)
                 return null;
-            if(!IdNodeIsValid(idFirstNode) || !IdNodeIsValid(idSecondNode))
+            if(!DataIsValid(idFirstNode) || !DataIsValid(idSecondNode))
                 return null;
-            var firstNode = allNode.FirstOrDefault(n => n.ID == idFirstNode);
+            var firstNode = nodes.FirstOrDefault(n => n.ID == idFirstNode);
             if(firstNode == null)
                 return null;
-            var secondNode = allNode.FirstOrDefault(n => n.ID == idSecondNode);
+            var secondNode = nodes.FirstOrDefault(n => n.ID == idSecondNode);
             if(secondNode == null)
                 return null;
             return new Wall(firstNode, secondNode) { ID = idWall };
         }
-        private Boolean IdNodeIsValid(Int32 id) => id >= minId && id <= maxId;
-    }    
+    }
 }
